@@ -1,0 +1,48 @@
+# Sensitive configuration
+config.json
+.env
+credentials.json
+*_credentials.*
+*_config.*
+
+# Logs that might contain sensitive information
+*.log
+logs/
+pelosi_tracker.log
+
+# Data files (might contain processed information)
+pelosi_disclosures.json
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store 

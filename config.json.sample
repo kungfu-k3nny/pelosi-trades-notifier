@@ -1,0 +1,15 @@
+{
+    "base_url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+    "search_url": "https://disclosures-clerk.house.gov/FinancialDisclosure/ViewDisclosurePTP",
+    "last_name": "pelosi",
+    "filing_year": 2023,
+    "check_interval_seconds": 3,
+    "data_file": "pelosi_disclosures.json",
+    "email": {
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "sender_email": "your-email@gmail.com",
+        "sender_password": "your-app-password",
+        "recipient_email": "recipient-email@gmail.com"
+    }
+} 
