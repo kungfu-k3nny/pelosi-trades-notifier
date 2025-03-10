@@ -2,7 +2,7 @@
     "base_url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
     "search_url": "https://disclosures-clerk.house.gov/FinancialDisclosure/ViewDisclosurePTP",
     "last_name": "pelosi",
-    "filing_year": 2023,
+    "filing_year": 2025,
     "check_interval_seconds": 3,
     "data_file": "pelosi_disclosures.json",
     "email": {
