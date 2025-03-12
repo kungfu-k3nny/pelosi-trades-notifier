@@ -6,10 +6,51 @@ This Python application automatically monitors the House financial disclosure we
 
 - Automatically checks for new financial disclosures at regular intervals (3 seconds)
 - Downloads and parses PDF disclosure forms
-- Extracts relevant stock trade information
+- Extracts relevant stock trade information including:
+  - Stock name and ticker symbol
+  - Filing status (New, Amended, etc.)
+  - Transaction description
+  - Transaction date
+  - Notification date
 - Sends detailed email notifications with the disclosure information and PDF attachment
 - Tracks previously processed disclosures to avoid duplicate notifications
 - Thread-safe execution to prevent resource conflicts
+
+## PDF Parsing Methodology
+
+The application uses a pattern-matching approach to extract financial trade information from disclosure PDFs. Below is a comparison of the two methods that were considered:
+
+### Method 1: Custom Regex Pattern Matching (Implemented)
+
+**Pros:**
+- No external API dependencies or costs
+- Complete control over parsing logic
+- No privacy concerns as all processing happens locally
+- No rate limits or quota constraints
+- Works offline without internet connectivity
+
+**Cons:**
+- Less adaptable to changes in PDF format
+- May require maintenance if disclosure formats change
+- Less sophisticated than AI-powered solutions for complex documents
+- May not handle all edge cases perfectly
+
+### Method 2: AI-Powered PDF Parsing
+
+**Pros:**
+- Potentially more accurate for complex document structures
+- Better adaptability to format changes
+- Less maintenance required for parsing logic
+- Could handle a wider variety of edge cases
+
+**Cons:**
+- Requires external API dependencies (potentially paid services)
+- Privacy concerns for sensitive financial data
+- Rate limits or quotas may apply
+- Internet connectivity required
+- May have higher latency due to API calls
+
+We implemented Method 1 as it provides a good balance of functionality, privacy, and independence from external services, while being sufficient for the task of parsing standard disclosure PDFs.
 
 ## Security and Configuration
 
