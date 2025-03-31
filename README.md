@@ -52,6 +52,52 @@ The application uses a pattern-matching approach to extract financial trade info
 
 We implemented Method 1 as it provides a good balance of functionality, privacy, and independence from external services, while being sufficient for the task of parsing standard disclosure PDFs.
 
+## Project Structure
+
+The project is organized into modular components for better maintainability:
+
+- `main.py` - The entry point that initializes logging and starts the tracker
+- `config.py` - Configuration loading and management
+- `tracker.py` - Main PelosiTradesTracker class and core functionality
+- `pdf_parser.py` - PDF downloading and parsing functionality
+- `notification.py` - Email notification functionality
+- `tests/` - Test suite for various components
+
+## Tests
+
+The project includes comprehensive tests covering all major components:
+
+1. **PDF Detection Tests** - Verify the ability to find and download PDFs
+2. **PDF Parsing Tests** - Ensure proper extraction of trade information from PDFs
+3. **Email Notification Tests** - Validate email sending functionality
+4. **Integration Tests** - Test the full workflow end-to-end
+
+### Running Tests
+
+To run all tests:
+
+```bash
+python run_tests.py
+```
+
+To run a specific test:
+
+```bash
+python -m unittest tests.test_pdf_parsing
+```
+
+### Live Email Test
+
+There's a special test for sending actual emails that's disabled by default. To run it:
+
+1. Configure your `config.json` with real email credentials
+2. Edit `tests/test_email_notification.py` and uncomment the `@unittest.skip` line
+3. Run the test with:
+
+```bash
+python -m unittest tests.test_email_notification.TestEmailNotification.test_real_email_sending
+```
+
 ## Security and Configuration
 
 This application uses a separate configuration file to store sensitive information:
