@@ -129,7 +129,7 @@ class TestEmailNotification(unittest.TestCase):
             # Check that the function returned False due to error
             self.assertFalse(result)
 
-    @unittest.skip("This test sends a real email - only run manually after configuring real credentials")
+    # @unittest.skip("This test sends a real email - only run manually after configuring real credentials")
     def test_real_email_sending(self):
         """
         Test sending an actual email (skipped by default).

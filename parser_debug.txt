@@ -1,0 +1,65 @@
+Total trades found: 7
+Total descriptions found: 0
+
+Trade #1:
+  stock_name: Alphabet Inc. - Class A Common
+Stock
+  ticker: GOOGL
+  filing_status: New
+  description: Unknown
+  transaction_date: 01/14/2025
+  notification_date: 01/14/2025
+
+Trade #2:
+  stock_name: Amazon.com, Inc. - Common Stock
+  ticker: AMZN
+  filing_status: New
+  description: Unknown
+  transaction_date: 01/14/2025
+  notification_date: 01/14/2025
+
+Trade #3:
+  stock_name: NVIDIA Corporation - Common
+Stock
+  ticker: NVDA
+  filing_status: New
+  description: Unknown
+  transaction_date: 12/20/2024
+  notification_date: 12/20/2024
+
+Trade #4:
+  stock_name: NVIDIA Corporation - Common
+Stock
+  ticker: NVDA
+  filing_status: New
+  description: Unknown
+  transaction_date: 01/14/2025
+  notification_date: 01/14/2025
+
+Trade #5:
+  stock_name: Palo Alto Networks, Inc.
+  ticker: PANW
+  filing_status: New
+  description: Unknown
+  transaction_date: 12/20/2024
+  notification_date: 12/20/2024
+
+Trade #6:
+  stock_name: Tempus AI, Inc. - Class A Common
+Stock
+  ticker: TEM
+  filing_status: New
+  description: Unknown
+  transaction_date: 01/14/2025
+  notification_date: 01/14/2025
+
+Trade #7:
+  stock_name: Vistra Corp. Common Stock
+  ticker: VST
+  filing_status: New
+  description: Unknown
+  transaction_date: 01/14/2025
+  notification_date: 01/14/2025
+
+
+All Descriptions Found:

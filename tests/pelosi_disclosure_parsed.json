@@ -1,0 +1,66 @@
+[
+  {
+    "stock_name": "Alphabet Inc. - Class A Common\nStock",
+    "ticker": "GOOGL",
+    "filing_status": "New",
+    "description": "Purchased 50 call options with a strike price of $150 and an expiration date of 1/16 /26.",
+    "transaction_date": "01/14/2025",
+    "notification_date": "01/14/2025"
+  },
+  {
+    "stock_name": "Amazon.com, Inc. - Common Stock",
+    "ticker": "AMZN",
+    "filing_status": "New",
+    "description": "Purchased 50 call options with a strike price of $150 and an expiration date of 1/16 /26.",
+    "transaction_date": "01/14/2025",
+    "notification_date": "01/14/2025"
+  },
+  {
+    "stock_name": "Apple Inc. - Common Stock",
+    "ticker": "AAPL",
+    "filing_status": "New",
+    "description": "Purchased 50 call options with a strike price of $150 and an expiration date of 1/16 /26.",
+    "transaction_date": "01/14/2025",
+    "notification_date": "01/14/2025"
+  },
+  {
+    "stock_name": "NVIDIA Corporation - Common\nStock",
+    "ticker": "NVDA",
+    "filing_status": "New",
+    "description": "Sold 31,600 shares.",
+    "transaction_date": "12/31/2024",
+    "notification_date": "12/31/2024"
+  },
+  {
+    "stock_name": "NVIDIA Corporation - Common\nStock",
+    "ticker": "NVDA",
+    "filing_status": "New",
+    "description": "Exercised 500 call options purchased 11/2 2/23 (50,000 shares) at a strike price of $12 with an expiration date",
+    "transaction_date": "01/14/2025",
+    "notification_date": "01/14/2025"
+  },
+  {
+    "stock_name": "Palo Alto Networks, Inc.",
+    "ticker": "PANW",
+    "filing_status": "New",
+    "description": "Purchased 50 call options with a strike price of $80 and an expiration date of 1/16 /26.",
+    "transaction_date": "12/20/2024",
+    "notification_date": "12/20/2024"
+  },
+  {
+    "stock_name": "Tempus AI, Inc. - Class A Common\nStock",
+    "ticker": "TEM",
+    "filing_status": "New",
+    "description": "Exercised 140 call options purchased 2/12/24 & 2/21/24 (14,000 shares) at a strike price of $100 with an",
+    "transaction_date": "01/14/2025",
+    "notification_date": "01/14/2025"
+  },
+  {
+    "stock_name": "Vistra Corp. Common Stock",
+    "ticker": "VST",
+    "filing_status": "New",
+    "description": "Purchased 50 call options with a strike price of $20 and an expiration date of 1/16 /26.",
+    "transaction_date": "01/14/2025",
+    "notification_date": "01/14/2025"
+  }
+]
