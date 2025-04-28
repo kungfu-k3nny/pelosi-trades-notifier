@@ -3,6 +3,7 @@ import os
 import sys
 import json
 import logging
+import datetime
 from unittest.mock import patch, MagicMock, mock_open
 from io import BytesIO
 import PyPDF2
@@ -13,40 +14,44 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from pdf_parser import extract_trades_from_pdf
 
 # Disable logger output during tests
-logging.getLogger("PelosiTracker").setLevel(logging.CRITICAL)
+logging.getLogger("DisclosureTracker").setLevel(logging.CRITICAL)
 
 class TestPDFParsing(unittest.TestCase):
     
     def test_extract_trades_from_pdf(self):
         """Test that we can extract trades from a PDF with known content"""
+        # Get current year for test data
+        current_year = datetime.datetime.now().year
+        next_year = current_year + 1
+        
         # Create a mock PDF content with known structure
-        sample_pdf_text = """
+        sample_pdf_text = f"""
         UNITED STATES HOUSE OF REPRESENTATIVES
         Financial Disclosure Report
         
         FILER INFORMATION
-        Name: Pelosi, Nancy
+        Name: Representative, Test
         Status: Member of Congress
         
         Transactions
         
         ASSET: Alphabet Inc. - Class A (GOOGL)
         Filing Status: New
-        Description: Purchased 50 call options with a strike price of $150 and an expiration date of 1/16/2026.
-        Date: 01/14/2025
-        Notification Date: 01/14/2025
+        Description: Purchased 50 call options with a strike price of $150 and an expiration date of 1/16/{next_year}.
+        Date: 01/14/{current_year}
+        Notification Date: 01/14/{current_year}
         
         ASSET: Amazon.com, Inc. (AMZN)
         Filing Status: New
-        Description: Purchased 50 call options with a strike price of $150 and an expiration date of 1/16/2026.
-        Date: 01/14/2025
-        Notification Date: 01/14/2025
+        Description: Purchased 50 call options with a strike price of $150 and an expiration date of 1/16/{next_year}.
+        Date: 01/14/{current_year}
+        Notification Date: 01/14/{current_year}
         
         ASSET: Apple Inc. Common Stock (AAPL)
         Filing Status: New
         Description: Sold 31,600 shares.
-        Date: 12/31/2024
-        Notification Date: 12/31/2024
+        Date: 12/31/{current_year-1 if current_year > 1 else current_year}
+        Notification Date: 12/31/{current_year-1 if current_year > 1 else current_year}
         """
         
         # Create a mock PDF reader
@@ -70,16 +75,16 @@ class TestPDFParsing(unittest.TestCase):
             self.assertEqual(trades[0]['stock_name'], 'Alphabet Inc. - Class A')
             self.assertEqual(trades[0]['ticker'], 'GOOGL')
             self.assertEqual(trades[0]['filing_status'], 'New')
-            self.assertEqual(trades[0]['description'], 'Purchased 50 call options with a strike price of $150 and an expiration date of 1/16/2026.')
-            self.assertEqual(trades[0]['transaction_date'], '01/14/2025')
-            self.assertEqual(trades[0]['notification_date'], '01/14/2025')
+            self.assertEqual(trades[0]['description'], f'Purchased 50 call options with a strike price of $150 and an expiration date of 1/16/{next_year}.')
+            self.assertEqual(trades[0]['transaction_date'], f'01/14/{current_year}')
+            self.assertEqual(trades[0]['notification_date'], f'01/14/{current_year}')
             
             # Check the third trade
             self.assertEqual(trades[2]['stock_name'], 'Apple Inc. Common Stock')
             self.assertEqual(trades[2]['ticker'], 'AAPL')
             self.assertEqual(trades[2]['description'], 'Sold 31,600 shares.')
-            self.assertEqual(trades[2]['transaction_date'], '12/31/2024')
-            self.assertEqual(trades[2]['notification_date'], '12/31/2024')
+            self.assertEqual(trades[2]['transaction_date'], f'12/31/{current_year-1 if current_year > 1 else current_year}')
+            self.assertEqual(trades[2]['notification_date'], f'12/31/{current_year-1 if current_year > 1 else current_year}')
     
     def test_extract_trades_from_empty_pdf(self):
         """Test behavior when processing a PDF with no trade data"""
@@ -89,7 +94,7 @@ class TestPDFParsing(unittest.TestCase):
         Financial Disclosure Report
         
         FILER INFORMATION
-        Name: Pelosi, Nancy
+        Name: Representative, Test
         Status: Member of Congress
         
         No transactions to report.

@@ -6,16 +6,19 @@ from email.mime.application import MIMEApplication
 from io import BytesIO
 from typing import Dict, List, Optional
 
-logger = logging.getLogger("PelosiTracker.Notification")
+logger = logging.getLogger("DisclosureTracker.Notification")
 
 def send_email_notification(config: Dict, disclosure: Dict, trades: List[Dict], pdf_io: Optional[BytesIO] = None) -> bool:
-    """Send an email notification about a new disclosure"""
+    """Send an email notification about a new disclosure to all recipients"""
     try:
-        # Create email
-        msg = MIMEMultipart()
-        msg['From'] = config["email"]["sender_email"]
-        msg['To'] = config["email"]["recipient_email"]
-        msg['Subject'] = f"New Financial Disclosure from {disclosure['name']}"
+        # Get recipient list
+        recipient_emails = config["email"]["recipient_emails"]
+        sender_email = config["email"]["sender_email"]
+        
+        # Create email base
+        base_msg = MIMEMultipart()
+        base_msg['From'] = sender_email
+        base_msg['Subject'] = f"New Financial Disclosure: {disclosure['name']} ({disclosure['filing_type']})"
         
         # Create email body
         body = f"""
@@ -74,22 +77,27 @@ def send_email_notification(config: Dict, disclosure: Dict, trades: List[Dict], 
         </html>
         """
         
-        msg.attach(MIMEText(body, 'html'))
+        base_msg.attach(MIMEText(body, 'html'))
         
         # Attach the PDF if available
         if pdf_io:
             pdf_io.seek(0)
             pdf_attachment = MIMEApplication(pdf_io.read(), _subtype="pdf")
             pdf_attachment.add_header('Content-Disposition', 'attachment', filename=f"{disclosure['name']}_{disclosure['filing_type']}.pdf")
-            msg.attach(pdf_attachment)
+            base_msg.attach(pdf_attachment)
         
-        # Connect to SMTP server and send email
+        # Connect to SMTP server
         with smtplib.SMTP(config["email"]["smtp_server"], config["email"]["smtp_port"]) as server:
             server.starttls()
             server.login(config["email"]["sender_email"], config["email"]["sender_password"])
-            server.send_message(msg)
+            
+            # Send email to each recipient individually
+            for recipient in recipient_emails:
+                msg = base_msg.copy()
+                msg['To'] = recipient
+                server.send_message(msg)
+                logger.info(f"Email notification sent to {recipient} for disclosure: {disclosure['disclosure_id']}")
         
-        logger.info(f"Email notification sent for disclosure: {disclosure['disclosure_id']}")
         return True
         
     except Exception as e:

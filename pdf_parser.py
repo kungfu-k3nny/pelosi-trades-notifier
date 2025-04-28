@@ -5,7 +5,7 @@ import requests
 from io import BytesIO
 from typing import Dict, List, Optional, Set
 
-logger = logging.getLogger("PelosiTracker.PDFParser")
+logger = logging.getLogger("DisclosureTracker.PDFParser")
 
 def download_pdf(session, pdf_url: str) -> Optional[BytesIO]:
     """Download a PDF from the given URL"""

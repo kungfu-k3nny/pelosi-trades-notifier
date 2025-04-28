@@ -1,0 +1,8 @@
+project_id         = "your-gcp-project-id"
+region            = "us-central1"
+zone              = "us-central1-a"
+instance_name     = "disclosure-tracker"
+billing_account_id = "your-billing-account-id"
+alert_email       = "your-alert-email@example.com"
+repository_url    = "https://github.com/your-username/financial-disclosure-tracker.git"
+recipient_emails  = ["recipient1@example.com", "recipient2@example.com"] 

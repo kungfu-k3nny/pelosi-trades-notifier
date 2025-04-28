@@ -2,6 +2,7 @@ import unittest
 import os
 import sys
 import logging
+import datetime
 from unittest.mock import patch, MagicMock
 from io import BytesIO
 
@@ -11,47 +12,50 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from notification import send_email_notification
 
 # Disable logger output during tests
-logging.getLogger("PelosiTracker").setLevel(logging.CRITICAL)
+logging.getLogger("DisclosureTracker").setLevel(logging.CRITICAL)
 
 class TestEmailNotification(unittest.TestCase):
     
     def setUp(self):
         """Set up test fixtures"""
+        current_year = datetime.datetime.now().year
+        
         self.config = {
             "email": {
                 "smtp_server": "smtp.gmail.com",
                 "smtp_port": 587,
                 "sender_email": "test@example.com",
                 "sender_password": "test_password",
-                "recipient_email": "recipient@example.com"
+                "recipient_emails": ["recipient@example.com"]
             }
         }
         
         self.disclosure = {
-            "name": "Pelosi, Nancy",
+            "name": "Representative, Test",
             "office": "House of Representatives",
-            "filing_year": "2024",
+            "filing_year": str(current_year),
             "filing_type": "Periodic Transaction Report",
             "pdf_url": "https://example.com/file.pdf",
             "disclosure_id": "unique_id_123"
         }
         
+        # Use current year for dates
         self.trades = [
             {
                 "stock_name": "Alphabet Inc. - Class A",
                 "ticker": "GOOGL",
                 "filing_status": "New",
                 "description": "Purchased 50 call options",
-                "transaction_date": "01/14/2025",
-                "notification_date": "01/14/2025"
+                "transaction_date": f"01/14/{current_year}",
+                "notification_date": f"01/14/{current_year}"
             },
             {
                 "stock_name": "Apple Inc.",
                 "ticker": "AAPL",
                 "filing_status": "New",
                 "description": "Sold 31,600 shares",
-                "transaction_date": "12/31/2024",
-                "notification_date": "12/31/2024"
+                "transaction_date": f"12/31/{current_year-1 if current_year > 1 else current_year}",
+                "notification_date": f"12/31/{current_year-1 if current_year > 1 else current_year}"
             }
         ]
         
